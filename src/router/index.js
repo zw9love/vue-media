@@ -5,7 +5,7 @@ import Search from '../components/search.vue'
 import OrderSearch from '../components/orderSearch.vue'
 import Home from '../pages/home.vue'
 import Show from '../pages/show.vue'
-import Orderlist from '../pages/orderList.vue'
+import MyOrder from '../pages/MyOrder.vue'
 import Sugguestion from '../pages/sugguestion.vue'
 import Mylike from '../pages/myLike.vue'
 import Mycomment from '../pages/myComment.vue'
@@ -20,7 +20,7 @@ Vue.use(Router)
 
 const routes = [
   {
-    path: '/', components: {default: Home}, name: 'myhome',
+    path: '/', components: {default: Home}, name: 'home',
     children: [
       {
         path: '',
@@ -35,70 +35,70 @@ const routes = [
   {
     path: '/show',
     components: {
-      other: Show
+      default: Show
     },
     name: 'show'
   },
   {
-    path: '/orderlist',
+    path: '/myOrder',
     components: {
-      other: Orderlist
+      default: MyOrder
     },
     name: 'orderlist'
   },
   {
     path: '/sugguestion',
     components: {
-      other: Sugguestion
+      default: Sugguestion
     },
     name: 'sugguestion'
   },
   {
     path: '/mylike',
     components: {
-      other: Mylike
+      default: Mylike
     },
     name: 'mylike'
   },
   {
     path: '/comment',
     components: {
-      other: Mycomment
+      default: Mycomment
     },
     name: 'comment'
   },
   {
     path: '/search',
     components: {
-      other: Recommendsearch
+      default: Recommendsearch
     },
     name: 'search'
   },
   {
     path: '/subscribe',
     components: {
-      other: Subscribesearch
+      default: Subscribesearch
     },
     name: 'subscribe'
   },
   {
     path: '/ordershow',
     components: {
-      other: Ordershow
+      default: Ordershow
     },
     name: 'ordershow'
   },
   {
     path: '/loginlist',
     components: {
-      other: Loginlist
+      default: Loginlist
     },
     name: 'loginlist'
   },
   {
     path: '/phonelogin',
     components: {
-      other: Phonelogin
+      default: Phonelogin
     },
     name: 'phonelogin'
   }

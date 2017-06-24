@@ -72,18 +72,14 @@
       return {
         asideStyle: {},
         asideActive: false,
-        isGoContain: false,
-        isGoShadow: false,
-        isGoAside: false,
-        searchShow: true,
         activeIndex: 0,
         firstNavData: [],
         secondNavData: [],
         asideData: [
-          {href: '#/orderlist', src: require('../assets/img/myorder.png'), name: '我的订阅'},
+          {href: '#/myOrder', src: require('../assets/img/myorder.png'), name: '我的订阅'},
           {href: '#/mylike', src: require('../assets/img/star.png'), name: '我的收藏'},
-          {href: '#/comment', src: require('../assets/img/fix_msg.png'), name: '我的评论'},
-          {href: '#/sugguestion', src: require('../assets/img/suggestion.png'), name: '意见反馈'},
+          {href: '#/mylike', src: require('../assets/img/fix_msg.png'), name: '我的评论'},
+          {href: '#/mylike', src: require('../assets/img/suggestion.png'), name: '意见反馈'},
           {href: 'javascript:;', src: require('../assets/img/quit.png'), name: '退出',}
         ],
         recommendData: []
@@ -162,7 +158,13 @@
       $('html').removeClass('html')
       this.renderRecommendData()
       this.renderFirstNavData()
-      this.myScroll($, this, {data_name: 'recommendData', fn_name: 'renderRecommendData', num: 20})
+      this.myScroll(this, {data_name: 'recommendData', fn_name: 'renderRecommendData', num: 20})
+    },
+    //  当组件销毁的时候
+    destroyed(){
+      $('body').removeClass('body')
+      $('html').removeClass('html')
+      this.unScroll()
     }
   }
 </script>

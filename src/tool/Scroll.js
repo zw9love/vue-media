@@ -1,4 +1,7 @@
-export function myScroll($, obj, json){
+import $ from 'jquery'
+
+
+export function myScroll(obj, json){
   $(window).on('scroll', () => {
     var sumHeight = $(document).height()
     var clientHeight = $(window).height()
@@ -13,6 +16,6 @@ export function myScroll($, obj, json){
   })
 }
 
-export function unScroll($){
+export function unScroll(){
   $(window).off()
 }
