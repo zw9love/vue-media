@@ -4,6 +4,9 @@
   color: #333;
   word-wrap: break-word;
   word-break: break-all;
+  list-style:none;
+  padding:0;
+  margin:0;
 }
 
 html {
@@ -22,34 +25,121 @@ body {
   box-sizing: border-box;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
+  max-width:600px;
 }
 
+/* html,body 3D变换的样式*/
 
+.html{
+  overflow: hidden;
+}
+
+.body {
+  perspective: 600px;
+  -webkit-perspective: 600px;
+  -moz-perspective: 600px;
+  overflow: hidden;
+}
 
 .container{
   position: relative;
   transition:all 0.8s ease 0s;
   -webkit-transition:all 0.8s ease 0s;
   z-index: 2;
-  margin: 0 auto;
   width :100%;
   max-width:600px;
+  margin: 61px auto 0 auto;
+  left:0%;
+  padding:0 1.2rem;
+  box-sizing:border-box;
+  overflow:hidden
 }
 
-div.go_contain{
-  left:70%;
-  transform:rotateY(-15deg);
-  -webkit-transform:rotateY(-15deg);
+div.go_contain {
+  left: 70%;
+  transform: rotateY(-6deg);
+  -webkit-transform: rotateY(-6deg);
+  -moz-transform: rotateY(-6deg);
+  /*background-color:rgba(255,255,255,0.3)*/
 }
 
-div.go_shadow{
-  z-index: 1000;
-  opacity: 0.3;
+div.go_aside {
+  left: 0!important;
+  opacity: 1!important;
 }
+
+div.go_shadow {
+  z-index: 1000!important;
+  opacity: 0.3!important;
+}
+
 
 .noscroll{
   overflow: hidden;
 }
+
+.line{
+  height: 1px;
+  background: #e8e8e8;
+  margin:1.5rem 0;
+}
+
+/*修改一级导航点击高亮字体*/
+
+.current{
+  color: #e60012!important;
+  font-size: 1.6rem!important;
+}
+
+
+/*已订阅*/
+
+.has_order {
+  right: auto !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  -webkit-transform: translate(-50%, -50%) !important;
+  color: #999 !important;
+  width: 100%;
+}
+
+/*无订阅块*/
+
+p.no-data {
+  font-size: 1.2rem;
+  color: #999;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  display: none;
+}
+
+
+.mask{
+  width:180px;
+  height:60px;
+  position: fixed;
+  z-index:1;
+  left:50%;
+  top:50%;
+  background-color: rgba(0,0,0,0);
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transition:background-color 500ms ease;
+  border-radius:5px;
+  line-height:60px;
+  text-align: center;
+}
+
+.mask-text{
+  color:#fff;
+  font-size:16px;
+}
+
+
 
 .scroller1{
   /*transition-timing-function:cubic-bezier(0.1, 0.57, 0.1, 1);*/

@@ -1,11 +1,11 @@
 <template>
-    <div class="media">
+    <!--<div class="media">-->
         <!--<keep-alive v-if="keepAlive">-->
-            <router-view ></router-view>
+        <router-view ></router-view>
         <!--</keep-alive>-->
         <!--<router-view v-else></router-view>-->
-        <router-view name="other"></router-view>
-    </div>
+        <!--<router-view name="other"></router-view>-->
+    <!--</div>-->
 </template>
 <style src="./assets/css/cssreset-min.css"></style>
 <style src="./assets/css/global.styl"  lang="stylus" rel="stylesheet/stylus"></style>

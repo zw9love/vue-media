@@ -1,119 +1,169 @@
 <template>
-    <div class="home">
-        <myaside :active="isGoAside"></myaside>
-        <homeshadow ref="homeshadow"></homeshadow>
-        <div class="container" @click="backClick" :class="{go_contain:isGoContain}">
-            <div class="contain_shadow" :class="{go_shadow:isGoShadow}"></div>
-            <firstnavigation ref="firstnavigation"></firstnavigation>
-            <keep-alive>
-                <router-view></router-view>
-            </keep-alive>
-            <section class="media_info">
-                <recommendeach v-for="(x,index) in recommendList" :mydata="x"></recommendeach>
-            </section>
+  <div style="overflow: hidden;">
+    <!--侧边栏-->
+    <div class="aside" :class="{'go_aside':asideActive}" :style="asideStyle">
+      <div class="login_head">
+        <a href="javascript:;"><img src="../assets/img/login.png" alt=""></a>
+        <span><a href="javascript:;">点击登录</a></span>
+      </div>
+      <ul>
+        <div v-for="x in asideData">
+          <a :href="x.href">
+            <li>
+              <img :src="x.src" alt="">
+              <span>{{x.name}}</span>
+            </li>
+          </a>
+          <div class="line"></div>
         </div>
-        <!--<button @click="chufa">触发自定义事件</button>-->
+      </ul>
     </div>
+    <!--main内容块-->
+    <div class="container" @click="backClick" :class="{'go_contain':asideActive}" style="margin:0 auto;">
+      <!--阴影块-->
+      <div class="contain_shadow" :class="{'go_shadow':asideActive}" @click="moreInfoClick"></div>
+      <!--一级导航-->
+      <div class="header_contain">
+        <header class="media_header">
+          <a href="javascript:;" @click="moreInfoClick"><img src="../assets/img/nav.png" alt=""></a>
+          <div class="media_header_info" id="wrapper">
+            <ul id="scroller">
+              <li v-for="(x,index) in firstNavData" @click="firstClick(x,index)">
+                <a href="javascript:;" :class="{'current': activeIndex == index}">{{x.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </header>
+      </div>
+      <!--二级导航-->
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+      <!--主要内容块-->
+      <section class="media_info">
+        <div class="main-data" v-for="x in recommendData">
+          <div class="main-cell" v-for="(y,index) in x.list">
+            <div v-if="index < 3">
+              <Recommend :data="y"></Recommend>
+            </div>
+            <div v-else :data="y">
+              <BigRecommend :data="y"></BigRecommend>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
 </template>
 
 <script>
 
-    import $ from 'jquery'
-    import Firstnavigation from '../components/firstNavigation.vue'
-    import Recommendeach from '../components/recommendEach.vue'
-    import Homeshadow from '../components/homeShadow.vue'
-    import Myaside from '../components/myAside.vue'
-    import Vue from 'vue'
+  import $ from 'jquery'
+  import Mock from 'mockjs'
+  import Recommend from '../components/recommend.vue'
+  import BigRecommend from '../components/bigRecommend.vue'
 
-    export default{
-        created(){
-            this.$on('ok',function(msg){
-               alert(msg);
-            })
-//            this.$parent.keepAlive=true;
-//            console.log('home被创造了')
-            this.wrapper.css({
-                'perspective':'600px',
-                '-webkit-perspective':'600px'
-            });
-        },
-        destroyed(){
-//            console.log('home被销毁了');
-            this.wrapper.css({
-                'perspective':'none',
-                '-webkit-perspective':'none'
-            });
-        },
-        methods:{
-            chufa(){
-                this.$emit('ok','我去666')
-            },
-            //点击页面返回事件
-            backClick(){
-                this.wrapper.removeClass('noscroll');
-                this.isGoContain=false;
-                this.isGoShadow=false;
-                this.$children[0].isactive=false;
-                this.window.off('touchmove');
-            }
-        },
-        components:{
-            Recommendeach,
-            Firstnavigation,
-            Homeshadow,
-            Myaside
-        },
-        data(){
-            return{
-                isGoContain:false,
-                isGoShadow:false,
-                isGoAside:false,
-                searchShow:true,
-                firstnavigationList:[
-                    {name:'推荐',classobj:{current:true},href:"#/"},
-                    {name:'行业',classobj:{current:false},href:"#/industry/1"},
-                    {name:'订阅',classobj:{current:false},href:"#/order/2"},
-                    {name:'时尚',classobj:{current:false},href:"#/"},
-                    {name:'美妆',classobj:{current:false},href:"#/"},
-                    {name:'推荐2',classobj:{current:false},href:"#/"},
-                    {name:'行业2',classobj:{current:false},href:"#/"},
-                    {name:'订阅2',classobj:{current:false},href:"#/"},
-                    {name:'时尚2',classobj:{current:false},href:"#/"},
-                    {name:'美妆3',classobj:{current:false},href:"#/"},
-                    {name:'美妆4',classobj:{current:false},href:"#/"},
-                    {name:'美妆5',classobj:{current:false},href:"#/"},
-                    {name:'美妆6',classobj:{current:false},href:"#/"}
-                ],
-                secondnavigationList:[
-                    {name:'咨询',classobj:{menucurrent:true},href:"#/industry/1"},
-                    {name:'人物666',classobj:{menucurrent:false},href:"#/industry/1"},
-                    {name:'买手',classobj:{menucurrent:false},href:"#/industry/1"},
-                    {name:'设计师',classobj:{menucurrent:false},href:"#/industry/1"},
-                    {name:'贺喜时尚111',classobj:{menucurrent:false},href:"#/industry/1"},
-                    {name:'贺喜时尚222',classobj:{menucurrent:false},href:"#/industry/1"},
-                    {name:'贺喜时尚333',classobj:{menucurrent:false},href:"#/industry/1"},
-                    {name:'贺喜时尚444',classobj:{menucurrent:false},href:"#/industry/1"},
-                    {name:'贺喜时尚555',classobj:{menucurrent:false},href:"#/industry/1"},
-                    {name:'贺喜时尚666',classobj:{menucurrent:false},href:"#/industry/1"},
-                ],
-                recommendList:[
-                    //推荐块4个一组  3大1小
-                    [
-                        {eyes:100, msg:666, ismovie:false,infoObj:{ismovie:false}},
-                        {eyes:200, msg:888, ismovie:true,infoObj:{ismovie:true}},
-                        {eyes:300, msg:222, ismovie:false,infoObj:{ismovie:false}},
-                        {eyes:999, msg:333, ismovie:false,infoObj:{ismovie:false}}
-                    ]
-                ],
-                asideList:[
-                    {href:'#/orderlist', src:require('../assets/img/myorder.png'), info:'我的订阅'},
-                    {href:'#/mylike', src:require('../assets/img/star.png'), info:'我的收藏'},
-                    {href:'#/comment', src:require('../assets/img/fix_msg.png'), info:'我的评论'},
-                    {href:'#/sugguestion', src:require('../assets/img/suggestion.png'), info:'意见反馈'},
-                    {href:'javascript:;', src:require('../assets/img/quit.png'), info:'退出',}
-                ]
-            }
+  export default{
+    components: {
+      Recommend,
+      BigRecommend
+    },
+    data(){
+      return {
+        asideStyle: {},
+        asideActive: false,
+        isGoContain: false,
+        isGoShadow: false,
+        isGoAside: false,
+        searchShow: true,
+        activeIndex: 0,
+        firstNavData: [],
+        secondNavData: [],
+        asideData: [
+          {href: '#/orderlist', src: require('../assets/img/myorder.png'), name: '我的订阅'},
+          {href: '#/mylike', src: require('../assets/img/star.png'), name: '我的收藏'},
+          {href: '#/comment', src: require('../assets/img/fix_msg.png'), name: '我的评论'},
+          {href: '#/sugguestion', src: require('../assets/img/suggestion.png'), name: '意见反馈'},
+          {href: 'javascript:;', src: require('../assets/img/quit.png'), name: '退出',}
+        ],
+        recommendData: []
+      }
+    },
+    methods: {
+      // 点击显示侧边栏内容
+      moreInfoClick(){
+        let scrollTop = $(window).scrollTop()
+        this.asideStyle = {'top': scrollTop + 'px'}
+
+        if (this.asideActive) {
+          clearInterval(this.timer)
+          this.timer = setTimeout(() => {
+            $('body').removeClass('body')
+            $('html').removeClass('html')
+          }, 800)
+        } else {
+          $('body').addClass('body')
+          $('html').addClass('html')
         }
+
+        this.asideActive = !this.asideActive
+      },
+      // 一级导航点击事件
+      firstClick(data, index){
+        if (this.activeIndex == index) return
+//        index == 2 ? this.router.navigate(['order']) : this.router.navigate([''])
+        this.activeIndex = index
+        this.recommendData = []
+        this.renderRecommendData()
+      },
+      //点击页面返回事件
+      backClick(){
+        this.wrapper.removeClass('noscroll');
+        this.isGoContain = false;
+        this.isGoShadow = false;
+        this.$children[0].isactive = false;
+      },
+      renderFirstNavData(){
+        this.firstNavData = Mock.mock({
+          'list|30': [{
+            'name': '@cword(2, 5)',
+          }],
+        }).list
+      },
+      renderRecommendData(){
+        let data = Mock.mock({
+          'list|3': [{
+            'list|4': [
+              {
+                'id': '@id',
+                'title': '@ctitle(6,50)',
+                'author': '@cword(2,8)',
+                'msg_num|0-999': 0,
+                'eye_num|0-999': 0,
+                'isMovie': '@boolean',
+                'isOrder': '@boolean',
+                'time': '@datetime("yyyy-MM-dd")',
+                'src': '../assets/img/order.png',
+                'infoData|1-5': [{
+                  'info': '@cparagraph()',
+                  'src': '../assets/img/show_' + '@integer(1, 3)' + '.jpg'
+                }]
+              },
+            ]
+          }],
+        }).list
+
+        this.recommendData = this.recommendData.concat(data)
+//        console.log(JSON.stringify(this.recommendData, null, 4))
+      },
+    },
+    mounted(){
+      $('body').removeClass('body')
+      $('html').removeClass('html')
+      this.renderRecommendData()
+      this.renderFirstNavData()
+      this.myScroll($, this, {data_name: 'recommendData', fn_name: 'renderRecommendData', num: 20})
     }
+  }
 </script>
-<style src="../assets/css/style_home.css"></style>
+<style src="../assets/css/style_home.css" scoped></style>
