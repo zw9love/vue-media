@@ -3,8 +3,8 @@
     <!--侧边栏-->
     <div class="aside" :class="{'go_aside':asideActive}" :style="asideStyle">
       <div class="login_head">
-        <a href="javascript:;"><img src="../assets/img/login.png" alt=""></a>
-        <span><a href="javascript:;">点击登录</a></span>
+        <a href="javascript:;" @click="goLogin"><img src="../assets/img/login.png" alt=""></a>
+        <span><a href="javascript:;" @click="goLogin">点击登录</a></span>
       </div>
       <ul>
         <div v-for="x in asideData">
@@ -60,8 +60,8 @@
 
   import $ from 'jquery'
   import Mock from 'mockjs'
-  import Recommend from '../components/recommend.vue'
-  import BigRecommend from '../components/bigRecommend.vue'
+  import Recommend from '../components/Recommend.vue'
+  import BigRecommend from '../components/BigRecommend.vue'
 
   export default{
     components: {
@@ -77,15 +77,18 @@
         secondNavData: [],
         asideData: [
           {href: '#/myOrder', src: require('../assets/img/myorder.png'), name: '我的订阅'},
-          {href: '#/mylike', src: require('../assets/img/star.png'), name: '我的收藏'},
-          {href: '#/mylike', src: require('../assets/img/fix_msg.png'), name: '我的评论'},
-          {href: '#/mylike', src: require('../assets/img/suggestion.png'), name: '意见反馈'},
+          {href: '#/myLike', src: require('../assets/img/star.png'), name: '我的收藏'},
+          {href: '#/myComment', src: require('../assets/img/fix_msg.png'), name: '我的评论'},
+          {href: '#/sugguestion', src: require('../assets/img/suggestion.png'), name: '意见反馈'},
           {href: 'javascript:;', src: require('../assets/img/quit.png'), name: '退出',}
         ],
         recommendData: []
       }
     },
     methods: {
+      goLogin(){
+          this.$router.push({name:'loginList'})
+      },
       // 点击显示侧边栏内容
       moreInfoClick(){
         let scrollTop = $(window).scrollTop()
@@ -142,7 +145,8 @@
                 'src': '../assets/img/order.png',
                 'infoData|1-5': [{
                   'info': '@cparagraph()',
-                  'src': '../assets/img/show_' + '@integer(1, 3)' + '.jpg'
+                  'src': require('../assets/img/show_1.jpg')
+//                  'src': '../assets/img/show_' + '@integer(1, 3)' + '.jpg'
                 }]
               },
             ]

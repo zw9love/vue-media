@@ -2,7 +2,7 @@
   <div>
     <Mytitle :title="title"></Mytitle>
     <div class="container">
-      <div class="add_container">
+      <div class="add_container" @click="goOrderSearch">
         <a href="javascript:;">
           <div class="media_search">
             <div class="bottom"></div>
@@ -18,14 +18,14 @@
       </div>
       <div v-for="x in orderData">
         <div class="main_order">
-          <a href="javascript:;">
+          <a href="javascript:;" @click="goOrderShow(x)">
             <img :src="x.src" alt="">
             <span class="num">{{x.num}}</span>
           </a>
 
           <div class="main_order_info">
-            <p><a href="javascript:;">{{x.author}}</a></p>
-            <p>{{x.title}}</p>
+            <p @click="goOrderShow(x)"><a href="javascript:;">{{x.author}}</a></p>
+            <p @click="goOrderShow(x)">{{x.title}}</p>
           </div>
           <span id="time">{{x.time}}</span>
         </div>
@@ -35,13 +35,11 @@
   </div>
 </template>
 <script>
-  import Orderlistli from "../components/orderListLi.vue"
-  import Mytitle from "../components/mytitle.vue"
+  import Mytitle from "../components/MyTitle.vue"
   import Mock from 'mockjs'
 
   export default{
     components: {
-      Orderlistli,
       Mytitle
     },
     data(){
@@ -51,8 +49,11 @@
       }
     },
     methods: {
-      search(){
-        this.$router.push({name: 'subscribe'});
+      goOrderShow(data){
+          this.$router.push({name: 'orderShow',params:data});
+      },
+      goOrderSearch(){
+        this.$router.push({name: 'orderSearch'});
       },
       renderOrderData(){
         let data = Mock.mock({

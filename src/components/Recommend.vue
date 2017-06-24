@@ -11,7 +11,7 @@
       </div>
       <div class="media_info_right">
         <p class="p1"><a href="javascript:;" @click="jump">{{data.title}}</a></p>
-        <p class="p2">{{data.author}}</p>
+        <p class="p2">#{{data.author}}</p>
       </div>
       <div class="media_info_icon">
         <div class="media_info_eyes">
@@ -37,12 +37,7 @@
     },
     methods: {
       jump(){
-        if (this.myshow) {
-          this.$parent.hasMovie = this.data.infoObj.ismovie;
-          this.window.scrollTop(0)
-        } else {
-          this.$router.push({name: 'show', params: this.data.infoObj});
-        }
+        this.$router.push({name: 'show', params: this.data});
       }
     }
   }

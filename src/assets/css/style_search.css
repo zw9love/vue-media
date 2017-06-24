@@ -1,12 +1,11 @@
 /*页面的搜索块的样式*/
 
 .search_contain{
-  margin-top: calc(55px + 1.5rem);
-  margin-bottom:1.5rem
+  margin-top: 6rem;
 }
 
 .media_search {
-  /*margin-top: 1.5rem;*/
+  margin-top: 1.5rem;
   height: 3rem;
   text-align: center;
   position: relative;

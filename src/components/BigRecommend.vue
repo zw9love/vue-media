@@ -9,11 +9,11 @@
       </a>
       <div class="media_info_icon">
         <div class="media_info_eyes">
-          <img :src="require('../assets/img/eyes.png')" alt="">
+          <img src="../assets/img/eyes.png" alt="">
           <span>{{data.eye_num}}</span>
         </div>
         <div class="media_info_msg">
-          <img :src="require('../assets/img/msg.png')" alt="">
+          <img src="../assets/img/msg.png" alt="">
           <span>{{data.msg_num}}</span>
         </div>
         <p>{{data.author}}</p>
@@ -31,7 +31,7 @@
     },
     methods: {
       jump(){
-        this.$router.push({name: 'show', params: this.data.infoObj});
+        this.$router.push({name: 'show', params: this.data});
       }
     }
   }

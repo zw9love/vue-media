@@ -1,19 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Search from '../components/search.vue'
-import OrderSearch from '../components/orderSearch.vue'
-import Home from '../pages/home.vue'
-import Show from '../pages/show.vue'
+import GoRecommendSearch from '../components/GoRecommendSearch.vue'
+import GoOrderSearch from '../components/GoOrderSearch.vue'
+import Home from '../pages/Home.vue'
+import Show from '../pages/Show.vue'
 import MyOrder from '../pages/MyOrder.vue'
-import Sugguestion from '../pages/sugguestion.vue'
-import Mylike from '../pages/myLike.vue'
-import Mycomment from '../pages/myComment.vue'
-import Recommendsearch from '../pages/recommendSearch.vue'
-import Subscribesearch from '../pages/subscribeSearch.vue'
-import Ordershow from '../pages/orderShow.vue'
-import Loginlist from '../pages/loginList.vue'
-import Phonelogin from '../pages/phoneLogin.vue'
+import Sugguestion from '../pages/Sugguestion.vue'
+import MyLike from '../pages/MyLike.vue'
+import Mycomment from '../pages/MyComment.vue'
+import RecommendSearch from '../pages/RecommendSearch.vue'
+import OrderSearch from '../pages/OrderSearch.vue'
+import Ordershow from '../pages/OrderShow.vue'
+import Loginlist from '../pages/LoginList.vue'
+import Phonelogin from '../pages/PhoneLogin.vue'
 
 
 Vue.use(Router)
@@ -24,11 +24,11 @@ const routes = [
     children: [
       {
         path: '',
-        component: Search
+        component: GoRecommendSearch
       },
       {
-        path: 'order/:id',
-        component: OrderSearch
+        path: 'order',
+        component: GoOrderSearch
       }
     ]
   },
@@ -44,7 +44,7 @@ const routes = [
     components: {
       default: MyOrder
     },
-    name: 'orderlist'
+    name: 'myOrder'
   },
   {
     path: '/sugguestion',
@@ -54,53 +54,53 @@ const routes = [
     name: 'sugguestion'
   },
   {
-    path: '/mylike',
+    path: '/myLike',
     components: {
-      default: Mylike
+      default: MyLike
     },
-    name: 'mylike'
+    name: 'myLike'
   },
   {
-    path: '/comment',
+    path: '/myComment',
     components: {
       default: Mycomment
     },
-    name: 'comment'
+    name: 'myComment'
   },
   {
-    path: '/search',
+    path: '/recommendSearch',
     components: {
-      default: Recommendsearch
+      default: RecommendSearch
     },
-    name: 'search'
+    name: 'recommendSearch'
   },
   {
-    path: '/subscribe',
+    path: '/orderSearch',
     components: {
-      default: Subscribesearch
+      default: OrderSearch
     },
-    name: 'subscribe'
+    name: 'orderSearch'
   },
   {
-    path: '/ordershow',
+    path: '/orderShow',
     components: {
       default: Ordershow
     },
-    name: 'ordershow'
+    name: 'orderShow'
   },
   {
-    path: '/loginlist',
+    path: '/loginList',
     components: {
       default: Loginlist
     },
-    name: 'loginlist'
+    name: 'loginList'
   },
   {
-    path: '/phonelogin',
+    path: '/phoneLogin',
     components: {
       default: Phonelogin
     },
-    name: 'phonelogin'
+    name: 'phoneLogin'
   }
 ]
 

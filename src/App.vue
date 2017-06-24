@@ -10,7 +10,7 @@
 <style src="./assets/css/cssreset-min.css"></style>
 <style src="./assets/css/global.styl"  lang="stylus" rel="stylesheet/stylus"></style>
 <script>
-    import Home from "./pages/home.vue"
+    import Home from "./pages/Home.vue"
     export default{
         components:{
             Home
