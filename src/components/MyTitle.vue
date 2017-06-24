@@ -20,8 +20,9 @@
         this.$router.back()
       },
       edit(){
-        this.parent['editActive'] = !this.parent['editActive']
-        this.str = this.parent['editActive'] ? '完成' : '编辑'
+        let editTarget = this.$store.getters.getEditTarget
+        editTarget.editActive = !editTarget.editActive
+        this.str = editTarget.editActive ? '完成' : '编辑'
       }
     }
   }

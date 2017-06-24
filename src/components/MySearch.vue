@@ -20,4 +20,4 @@
     }
   }
 </script>
-<style src="../assets/css/style_search.css"></style>
+<style src="../assets/css/style_search.css" scoped></style>

@@ -7,8 +7,8 @@
         <span><a href="javascript:;" @click="goLogin">点击登录</a></span>
       </div>
       <ul>
-        <div v-for="x in asideData">
-          <a :href="x.href">
+        <div v-for="(x,index) in asideData">
+          <a :href="x.href" @click="asideClick(index)">
             <li>
               <img :src="x.src" alt="">
               <span>{{x.name}}</span>
@@ -18,8 +18,10 @@
         </div>
       </ul>
     </div>
+    <!--退出shadow-->
+    <MyShadow :title="shadowTitle"></MyShadow>
     <!--main内容块-->
-    <div class="container" @click="backClick" :class="{'go_contain':asideActive}" style="margin:0 auto;">
+    <div class="container" :class="{'go_contain':asideActive}" style="margin:0 auto;">
       <!--阴影块-->
       <div class="contain_shadow" :class="{'go_shadow':asideActive}" @click="moreInfoClick"></div>
       <!--一级导航-->
@@ -62,14 +64,17 @@
   import Mock from 'mockjs'
   import Recommend from '../components/Recommend.vue'
   import BigRecommend from '../components/BigRecommend.vue'
+  import MyShadow from '../components/MyShadow.vue'
 
   export default{
     components: {
       Recommend,
-      BigRecommend
+      BigRecommend,
+      MyShadow
     },
     data(){
       return {
+        shadowTitle: '是否确定退出？',
         asideStyle: {},
         asideActive: false,
         activeIndex: 0,
@@ -86,8 +91,15 @@
       }
     },
     methods: {
+      asideClick(index){
+        if (index == this.asideData.length - 1) {
+          let shadowTarget = this.$store.getters.getShadowTarget
+          console.log(shadowTarget)
+          shadowTarget.shadowActive = true
+        }
+      },
       goLogin(){
-          this.$router.push({name:'loginList'})
+        this.$router.push({name: 'loginList'})
       },
       // 点击显示侧边栏内容
       moreInfoClick(){
@@ -114,13 +126,6 @@
         this.activeIndex = index
         this.recommendData = []
         this.renderRecommendData()
-      },
-      //点击页面返回事件
-      backClick(){
-        this.wrapper.removeClass('noscroll');
-        this.isGoContain = false;
-        this.isGoShadow = false;
-        this.$children[0].isactive = false;
       },
       renderFirstNavData(){
         this.firstNavData = Mock.mock({

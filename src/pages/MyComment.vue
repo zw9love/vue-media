@@ -1,7 +1,7 @@
 <template>
   <div>
     <MyTitle :title="title" :isActive="true"></MyTitle>
-    <!--<Shadow [title]="quitTitle" [fn]="sureFn" [parent]="sendSelf()"></Shadow>-->
+    <MyShadow :title="shadowTitle"></MyShadow>
     <div class="no_comment" v-if="commentData.length == 0">
       <p>暂无评论内容</p>
     </div>
@@ -25,23 +25,33 @@
 <script>
   import MyTitle from '../components/MyTitle.vue'
   import Comment from '../components/Comment.vue'
+  import MyShadow from '../components/MyShadow.vue'
   import Mock from 'mockjs'
 
   export default{
     components: {
       MyTitle,
-      Comment
+      Comment,
+      MyShadow
     },
     data(){
       return {
         commentData: [],
         title: '我的评论',
-        editActive:false
+        shadowTitle: '是否删除这条评论？',
+        editActive:false,
+        editIndex:''
       }
     },
     methods: {
-      editClick(){
-
+      editClick(index){
+        let shadowTarget = this.$store.getters.getShadowTarget
+        shadowTarget.shadowActive = true
+        this.editIndex = index
+      },
+      // 确定按钮
+      sureDelete(){
+        this.commentData.splice(this.editIndex,1)
       },
       renderData(){
         let data = Mock.mock({
@@ -64,6 +74,11 @@
       }
     },
     mounted(){
+      let action = {
+        type: 'setEditTarget',
+        value: this
+      }
+      this.$store.dispatch(action)
       this.renderData()
       this.myScroll(this, {data_name: 'commentData', fn_name: 'renderData', num: 30})
     },

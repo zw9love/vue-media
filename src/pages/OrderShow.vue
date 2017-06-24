@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <Mask></Mask>
+    <MyMask></MyMask>
 
     <div class="container">
 
@@ -28,11 +28,13 @@
 <script>
   import Recommend from '../components/Recommend.vue'
   import OrderCell from '../components/OrderCell.vue'
+  import MyMask from '../components/MyMask.vue'
   import Mock from 'mockjs'
   export default{
     components: {
       Recommend,
-      OrderCell
+      OrderCell,
+      MyMask
     },
     data(){
       return {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MyMask></MyMask>
     <section class="main">
       <!--<Mask></Mask>-->
       <p class="main_title">{{showData['title']}}</p>
@@ -10,7 +11,7 @@
           <p><a href="javascript:;">{{showData['author']}}</a></p>
           <p>{{showData['time']}}</p>
         </div>
-        <!--<OrderCell [orderActive]="showData['isOrder']"></OrderCell>-->
+        <OrderCell :orderActive="showData['isOrder']"></OrderCell>
       </div>
       <div class="line"></div>
       <!--电影块-->
@@ -98,7 +99,7 @@
     </div>
 
     <!--默认块-->
-    <div class="comment_fixed" v-show="!shareActive || !textActive">
+    <div class="comment_fixed" v-show="active">
       <ul>
         <li><a href="javascript:;"><img src="../assets/img/back.png" alt="" class="back" @click="goBack()"></a></li>
         <li @click="textClick()">
@@ -113,7 +114,7 @@
                                                                                 alt=""></a></li>
         <li v-if="starActive"><a href="javascript:;" @click="starClick()"><img src="../assets/img/star_hover.png"
                                                                                alt=""></a></li>
-        <li><a href="javascript:;" @click="textClick()"><img src="../assets/img/fix_msg.png" alt=""><span class="num">666</span></a>
+        <li><a href="javascript:;" @click="textClick()"><img src="../assets/img/fix_msg.png" alt="" style="width: 30px;"><span class="num">666</span></a>
         </li>
       </ul>
 
@@ -134,15 +135,19 @@
 <script>
   import Recommend from "../components/Recommend.vue"
   import Comment from "../components/Comment.vue"
+  import OrderCell from "../components/OrderCell.vue"
+  import MyMask from "../components/MyMask.vue"
   import Mock from 'mockjs'
   import $ from 'jquery'
   export default{
     created(){
-      this.window.scrollTop(0);
+      $(window).scrollTop(0)
     },
     components: {
       Recommend,
       Comment,
+      OrderCell,
+      MyMask
     },
     data(){
       return {
@@ -150,6 +155,7 @@
         recommendData: [],
         commentData: [],
         showData: [],
+        active:true,
         shareActive: false,
         shadowActive: false,
         textActive: false,
@@ -164,16 +170,39 @@
         this.$router.back()
       },
       sureText(){
+        this.shadowActive = false
+        this.textActive = false
       },
       cancelText(){
+        this.shadowActive = false
+        this.textActive = false
       },
       textClick(){
+        this.myComment = ''
+        this.placeholder = '我来说两句...'
+        this.commentActive = false
+        this.shadowActive = true
+        this.textActive = true
       },
       shareClick(){
+        this.shadowActive = true
+        this.shareActive = true
+        this.active = false
       },
       starClick(){
+        let maskLock = this.$store.getters.getMaskLock
+        if(maskLock) return
+        let action = {type: 'setMaskLock', value: true}
+        this.$store.dispatch(action)
+        this.starActive = !this.starActive
+        let mask = this.$store.getters.getMask
+        mask.msg = this.starActive ? '已添加收藏' : '已取消收藏'
+        mask.toggleActive()
       },
       cancel(){
+        this.shadowActive = false
+        this.shareActive = false
+        this.active = true
       },
       renderRecommendData() {
         this.recommendData = Mock.mock({

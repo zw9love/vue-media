@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MyMask></MyMask>
     <TitleSearch :placeholder="'搜索尚阅号'"></TitleSearch>
     <div class="container">
       <!--<Mask></Mask>-->
@@ -24,11 +25,13 @@
 <script>
   import OrderCell from '../components/OrderCell.vue'
   import TitleSearch from '../components/TitleSearch.vue'
+  import MyMask from '../components/MyMask.vue'
   import Mock from 'mockjs'
   export default{
     components: {
       OrderCell,
-      TitleSearch
+      TitleSearch,
+      MyMask
     },
     data(){
       return {
