@@ -9,7 +9,9 @@ const store = new Vuex.Store({
     editTarget:null,
     shadowTarget:null,
     mask:null,
-    maskLock:false
+    maskLock:false,
+    showTarget:null,
+    commentTarget:null
   },
   getters: {
     getEditTarget: ({editTarget}) => {
@@ -18,11 +20,17 @@ const store = new Vuex.Store({
     getShadowTarget: ({shadowTarget}) => {
       return shadowTarget
     },
+    getShowTarget: ({showTarget}) => {
+      return showTarget
+    },
     getMask: ({mask}) => {
       return mask
     },
     getMaskLock: ({maskLock}) => {
       return maskLock
+    },
+    getCommentTarget: ({commentTarget}) => {
+      return commentTarget
     },
   },
   mutations: {
@@ -32,11 +40,17 @@ const store = new Vuex.Store({
     setShadowTarget(state,{value}){
       state.shadowTarget = value
     },
+    setShowTarget(state,{value}){
+      state.showTarget = value
+    },
     setMask(state,{value}){
       state.mask = value
     },
     setMaskLock(state,{value}){
       state.maskLock = value
+    },
+    setCommentTarget(state,{value}){
+      state.commentTarget = value
     }
   },
   actions: {
@@ -46,11 +60,17 @@ const store = new Vuex.Store({
     setShadowTarget({ commit },value){
       commit('setShadowTarget',value)
     },
+    setShowTarget({ commit },value){
+      commit('setShowTarget',value)
+    },
     setMask({ commit },value){
       commit('setMask',value)
     },
     setMaskLock({ commit },value){
       commit('setMaskLock',value)
+    },
+    setCommentTarget({ commit },value){
+      commit('setCommentTarget',value)
     }
   }
 })

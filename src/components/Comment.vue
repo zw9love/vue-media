@@ -27,7 +27,7 @@
             <p v-for="(x,i) in renderData"><span class="main_comment_name"><a href="javascript:;"
                                                                               @click="nameClick(x.name1)">{{x.name1}} </a></span><span
               v-if="x.name2">回复</span><span class="main_comment_name"><a href="javascript:;"
-                                                                          @click="nameClick(x.name2)"> {{x.name2}}:</a></span>{{x.info}}
+                                                                         @click="nameClick(x.name2)"> {{x.name2}}:</a></span>{{x.info}}
             </p>
           </div>
           <p class="more" v-show="length > 5" @click="more()"><a href="javascript:;">展开更多回复</a></p>
@@ -40,7 +40,7 @@
 <script>
 
   export default{
-    props: ['data'],
+    props: ['data', 'commentActive'],
     components: {},
     data(){
       return {
@@ -50,12 +50,38 @@
     },
     methods: {
       writeMessage(){
+        if (!this.commentActive) return
+        let show = this.$store.getters.getShowTarget
+        let action
+        if (this.length <= 5) {
+          action = {type: 'setCommentTarget', value: this.renderData}
+        } else {
+          action = {type: 'setCommentTarget', value: this.data['data']}
+        }
+        this.$store.dispatch(action)
+        show.placeholder = '我来说两句...'
+        show.commentCellClick()
       },
       addLike(){
+        if (!this.commentActive) return
+        this.data['like_num']++
       },
       more(){
+        this.renderData = this.data['data']
+        this.length = 0
       },
-      nameClick(){
+      nameClick(name){
+        if (!this.commentActive) return
+        let show = this.$store.getters.getShowTarget
+        let action
+        if (this.length <= 5) {
+          action = {type: 'setCommentTarget', value: this.renderData}
+        } else {
+          action = {type: 'setCommentTarget', value: this.data['data']}
+        }
+        this.$store.dispatch(action)
+        show.placeholder = `回复：${name}`
+        show.commentCellClick()
       },
     },
     created(){

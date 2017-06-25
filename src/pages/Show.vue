@@ -114,7 +114,8 @@
                                                                                 alt=""></a></li>
         <li v-if="starActive"><a href="javascript:;" @click="starClick()"><img src="../assets/img/star_hover.png"
                                                                                alt=""></a></li>
-        <li><a href="javascript:;" @click="textClick()"><img src="../assets/img/fix_msg.png" alt="" style="width: 30px;"><span class="num">666</span></a>
+        <li><a href="javascript:;" @click="textClick()"><img src="../assets/img/fix_msg.png" alt=""
+                                                             style="width: 30px;"><span class="num">666</span></a>
         </li>
       </ul>
 
@@ -127,7 +128,7 @@
       <div class="btn2">
         <span><a href="javascript:;" @click="sureText()">发表</a></span>
       </div>
-      <textarea id="txt" :placeholder="placeholder" v-model="myComment"></textarea>
+      <textarea id="txt" :placeholder="placeholder" v-model="myComment" ref="txt"></textarea>
     </div>
 
   </div>
@@ -155,29 +156,66 @@
         recommendData: [],
         commentData: [],
         showData: [],
-        active:true,
+        active: true,
         shareActive: false,
         shadowActive: false,
         textActive: false,
         starActive: false,
         commentActive: false,
         myComment: '',
-        placeholder: '我来说两句...'
+        placeholder: '我来说两句...',
+        txtTarget:null
       }
     },
     methods: {
+      // 评论cell的msg按钮的点击事件
+      commentCellClick(){
+        this.myComment = ''
+        this.commentActive = true
+        this.shadowActive = true
+        this.textActive = true
+      },
       goBack(){
         this.$router.back()
       },
       sureText(){
-        this.shadowActive = false
-        this.textActive = false
+        this.cancelText()
+
+        // 如果是在点击comment块的时候
+        if (this.commentActive) {
+          let arr = this.$store.getters.getCommentTarget
+          let name = ''
+          if (this.placeholder.search('回复') != -1) {
+            name = this.placeholder.slice(3)
+            // console.log(name)
+          }
+
+          let data = {
+            'name1': '旺仔小牛奶',
+            'name2': name,
+            'info': this.myComment
+          }
+          arr.push(data)
+          // console.log(arr)
+        } else {
+          let data = {
+            'title': this.myComment,
+            'author': '旺仔小牛奶',
+            'msg_num': 0,
+            'like_num': 0,
+            'time': '刚刚',
+            // 评论的条数
+            'data': []
+          }
+          this.commentData.push(data)
+        }
       },
       cancelText(){
         this.shadowActive = false
         this.textActive = false
       },
       textClick(){
+        this.txtTarget.focus()
         this.myComment = ''
         this.placeholder = '我来说两句...'
         this.commentActive = false
@@ -191,7 +229,7 @@
       },
       starClick(){
         let maskLock = this.$store.getters.getMaskLock
-        if(maskLock) return
+        if (maskLock) return
         let action = {type: 'setMaskLock', value: true}
         this.$store.dispatch(action)
         this.starActive = !this.starActive
@@ -237,12 +275,18 @@
       },
       renderShowData(){
         this.showData = this.$route.params
-        this.showData.infoData.forEach((val)=>{
-
-        })
+//        this.showData.infoData.forEach((val) => {
+//
+//        })
       }
     },
+    created(){
+      let action = {type: 'setShowTarget', value: this}
+      this.$store.dispatch(action)
+    },
     mounted(){
+      // 不能点开文本框聚焦。。。
+      this.txtTarget = this.$refs.txt
       this.renderRecommendData()
       this.renderCommentData()
       this.renderShowData()
