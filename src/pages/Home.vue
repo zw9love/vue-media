@@ -23,11 +23,11 @@
     <!--main内容块-->
     <div class="container" :class="{'go_contain':asideActive}" style="margin:0 auto;">
       <!--阴影块-->
-      <div class="contain_shadow" :class="{'go_shadow':asideActive}" @click="moreInfoClick"></div>
+      <div class="contain_shadow" :class="{'go_shadow':asideActive}" @click="moreInfoClick(false)"></div>
       <!--一级导航-->
       <div class="header_contain">
         <header class="media_header">
-          <a href="javascript:;" @click="moreInfoClick"><img src="../assets/img/nav.png" alt=""></a>
+          <a href="javascript:;" @click="moreInfoClick(true)"><img src="../assets/img/nav.png" alt=""></a>
           <div class="media_header_info" id="wrapper">
             <ul id="scroller">
               <li v-for="(x,index) in firstNavData" @click="firstClick(x,index)">
@@ -102,7 +102,9 @@
         this.$router.push({name: 'loginList'})
       },
       // 点击显示侧边栏内容
-      moreInfoClick(){
+      moreInfoClick(val){
+        if(this.asideActive == val)  return
+
         let scrollTop = $(window).scrollTop()
         this.asideStyle = {'top': scrollTop + 'px'}
 
@@ -117,7 +119,7 @@
           $('html').addClass('html')
         }
 
-        this.asideActive = !this.asideActive
+        this.asideActive = val
       },
       // 一级导航点击事件
       firstClick(data, index){
