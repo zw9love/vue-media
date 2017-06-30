@@ -141,9 +141,6 @@
   import Mock from 'mockjs'
   import $ from 'jquery'
   export default{
-    created(){
-      $(window).scrollTop(0)
-    },
     components: {
       Recommend,
       Comment,
@@ -285,6 +282,7 @@
       this.$store.dispatch(action)
     },
     mounted(){
+      $(window).scrollTop(0)
       // 不能点开文本框聚焦。。。
       this.txtTarget = this.$refs.txt
       this.renderRecommendData()
