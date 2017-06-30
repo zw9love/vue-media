@@ -81,5 +81,5 @@
     }
   }
 </script>
-<style src="../assets/css/style_orderlist.css" scoped></style>
+<style src="../assets/css/style_myOrder.css" scoped></style>
 <style src="../assets/css/style_order.css" scoped></style>
