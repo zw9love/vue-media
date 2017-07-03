@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import GoRecommendSearch from '../components/GoRecommendSearch.vue'
 import GoOrderSearch from '../components/GoOrderSearch.vue'
+import GoIndustryNav from '../components/GoIndustryNav.vue'
 import Home from '../pages/Home.vue'
 import Show from '../pages/Show.vue'
 import MyOrder from '../pages/MyOrder.vue'
@@ -24,11 +25,18 @@ const routes = [
     children: [
       {
         path: '',
-        component: GoRecommendSearch
+        component: GoRecommendSearch,
+        name: 'default',
       },
       {
-        path: 'order',
-        component: GoOrderSearch
+        path: '/order',
+        component: GoOrderSearch,
+        name: 'order',
+      },
+      {
+        path: '/industry',
+        component: GoIndustryNav,
+        name: 'industry',
       }
     ]
   },

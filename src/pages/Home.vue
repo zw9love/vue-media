@@ -124,6 +124,16 @@
       // 一级导航点击事件
       firstClick(data, index){
         if (this.activeIndex == index) return
+        switch(index){
+          case 1:
+            this.$router.push({name: 'industry'})
+            break
+          case 2:
+            this.$router.push({name: 'order'})
+            break
+          default:
+            this.$router.push({name: 'default'})
+        }
 //        index == 2 ? this.router.navigate(['order']) : this.router.navigate([''])
         this.activeIndex = index
         this.recommendData = []
@@ -170,6 +180,7 @@
       this.renderRecommendData()
       this.renderFirstNavData()
       this.myScroll(this, {data_name: 'recommendData', fn_name: 'renderRecommendData', num: 20})
+      this.$router.push({name: 'default'})
     },
     //  当组件销毁的时候
     destroyed(){
