@@ -9,7 +9,7 @@
     <div class="container">
       <div v-for="(x,i) in recommendData" :class="{'isFirst':i == 0}">
         <div class="comment">
-          <div class="comment_left" v-show="editActive" @click="editClick(i)">
+          <div class="comment_left" v-show="editActive" @click="editClick(i)" @touchstart="editClick(i)">
             <div>
               <span></span>
             </div>

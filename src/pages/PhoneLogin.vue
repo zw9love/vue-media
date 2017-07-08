@@ -7,7 +7,7 @@
       </div>
       <div class="login_block2">
         <input type="text" placeholder="验证码" maxlength="4" v-model="provMsg">
-        <span :class="{'prov_hover':provActive}" @click="getProv()">{{msg}}</span>
+        <span :class="{'prov_hover':provActive}" @click="getProv()" @touchstart="getProv()">{{msg}}</span>
       </div>
       <div class="login_sure">
         <a href="javascript:;" :class="{'hover':loginActive}">登录</a>
