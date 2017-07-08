@@ -14,6 +14,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "iscroll": "^5.2.0",
     "jquery": "^3.2.1",
     "mockjs": "^1.0.1-beta3",
     "style-loader": "^0.18.2",

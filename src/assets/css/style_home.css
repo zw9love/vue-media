@@ -57,22 +57,26 @@ header.media_header > a > img {
 header.media_header .media_header_info {
   width: 100%;
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden;*/
+  /*overflow-x: scroll;*/
   margin-left: 25px;
 
 }
 
 header.media_header .media_header_info ul {
-  position: relative;
+  /*position: relative;*/
   overflow: hidden;
-  width: 5000px;
+  overflow-x: scroll;
+  white-space:nowrap;
+  /*width: 5000px;*/
 }
 
 header.media_header .media_header_info ul li {
-  float: left;
+  /*float: left;*/
   margin-right: 1.65rem;
   display: inline-block;
   vertical-align: middle;
+  white-space:nowrap;
 }
 
 header.media_header .media_header_info ul li a {

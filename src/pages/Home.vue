@@ -29,7 +29,7 @@
         <header class="media_header">
           <a href="javascript:;" @click="moreInfoClick(true)"><img src="../assets/img/nav.png" alt=""></a>
           <div class="media_header_info" id="wrapper">
-            <ul id="scroller">
+            <ul id="scroller" class="scrollbar">
               <li v-for="(x,index) in firstNavData" @click="firstClick(x,index)">
                 <a href="javascript:;" :class="{'current': activeIndex == index}">{{x.name}}</a>
               </li>
@@ -61,10 +61,12 @@
 <script>
 
   import $ from 'jquery'
+  import IScroll from 'iscroll'
   import Mock from 'mockjs'
   import Recommend from '../components/Recommend.vue'
   import BigRecommend from '../components/BigRecommend.vue'
   import MyShadow from '../components/MyShadow.vue'
+
 
   export default{
     components: {
@@ -181,6 +183,7 @@
       this.renderFirstNavData()
       this.myScroll(this, {data_name: 'recommendData', fn_name: 'renderRecommendData', num: 20})
       this.$router.push({name: 'default'})
+//      new IScroll('#wrapper', { scrollX: true, scrollY: false, mouseWheel: true })
     },
     //  当组件销毁的时候
     destroyed(){
