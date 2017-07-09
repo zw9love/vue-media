@@ -101,7 +101,7 @@
     <!--默认块-->
     <div class="comment_fixed" v-show="active">
       <ul>
-        <li><a href="javascript:;"><img src="../assets/img/back.png" alt="" class="back" @click="goBack()" @touchstart="goBack()"></a></li>
+        <li><a href="javascript:;"><img src="../assets/img/back.png" alt="" class="back" @click="goBack()" ></a></li>
         <li @click="textClick()" @touchstart="textClick()">
           <div class="comment_txt">
             <span></span>

@@ -1,7 +1,7 @@
 <template>
   <div class="page_header">
     <div class="back">
-      <img src="../assets/img/back.png" alt="" @click="goBack()" @touchstart="goBack()">
+      <img src="../assets/img/back.png" alt="" @click="goBack()">
     </div>
     <span class="page-title">{{title}}</span>
     <span class="page-edit" v-show="isActive" @click="edit()" @touchstart="edit()">{{str}}</span>
