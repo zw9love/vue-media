@@ -2,7 +2,7 @@
   <div>
     <Mytitle :title="title"></Mytitle>
     <div class="container">
-      <div class="add_container" @click="goOrderSearch">
+      <div class="add_container" @click="goOrderSearch" @touchstart="goOrderSearch()">
         <a href="javascript:;">
           <div class="media_search">
             <div class="bottom"></div>
@@ -18,14 +18,14 @@
       </div>
       <div v-for="x in orderData">
         <div class="main_order">
-          <a href="javascript:;" @click="goOrderShow(x)">
+          <a href="javascript:;" @click="goOrderShow(x)" @touchstart="goOrderShow(x)">
             <img :src="x.src" alt="">
             <span class="num">{{x.num}}</span>
           </a>
 
           <div class="main_order_info">
-            <p @click="goOrderShow(x)"><a href="javascript:;">{{x.author}}</a></p>
-            <p @click="goOrderShow(x)">{{x.title}}</p>
+            <p @click="goOrderShow(x)" @touchstart="goOrderShow(x)"><a href="javascript:;">{{x.author}}</a></p>
+            <p @click="goOrderShow(x)" @touchstart="goOrderShow(x)">{{x.title}}</p>
           </div>
           <span id="time">{{x.time}}</span>
         </div>

@@ -13,7 +13,7 @@
           <li><a href="javascript:;"><img src="../assets/img/share_qq.png" alt="">
             <span>微信</span></a>
           </li>
-          <li @click="goPhoneLogin"><a href="javascript:;"><img src="../assets/img/share_phone.png" alt="">
+          <li @click="goPhoneLogin" @touchstart="goPhoneLogin()"><a href="javascript:;"><img src="../assets/img/share_phone.png" alt="">
             <span>手机号</span></a>
           </li>
         </ul>

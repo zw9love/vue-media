@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page_header">
-      <div class="back" @click="goBack()">
+      <div class="back" @click="goBack()" @touchstart="goBack()">
         <img src="../assets/img/back.png" alt="">
       </div>
       <img src="../assets/img/page.png" alt="">

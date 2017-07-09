@@ -3,12 +3,12 @@
     <!--侧边栏-->
     <div class="aside" :class="{'go_aside':asideActive}" :style="asideStyle">
       <div class="login_head">
-        <a href="javascript:;" @click="goLogin"><img src="../assets/img/login.png" alt=""></a>
-        <span><a href="javascript:;" @click="goLogin">点击登录</a></span>
+        <a href="javascript:;" @click="goLogin" @touchstart="goLogin"><img src="../assets/img/login.png" alt=""></a>
+        <span><a href="javascript:;" @click="goLogin" @touchstart="goLogin">点击登录</a></span>
       </div>
       <ul>
         <div v-for="(x,index) in asideData">
-          <a :href="x.href" @click="asideClick(index)">
+          <a :href="x.href" @click="asideClick(index)" @touchstart="asideClick(index)">
             <li>
               <img :src="x.src" alt="">
               <span>{{x.name}}</span>
@@ -23,14 +23,14 @@
     <!--main内容块-->
     <div class="container" :class="{'go_contain':asideActive}" style="margin:0 auto;">
       <!--阴影块-->
-      <div class="contain_shadow" :class="{'go_shadow':asideActive}" @click="moreInfoClick(false)"></div>
+      <div class="contain_shadow" :class="{'go_shadow':asideActive}" @click="moreInfoClick(false)" ></div>
       <!--一级导航-->
       <div class="header_contain">
         <header class="media_header">
-          <a href="javascript:;" @click="moreInfoClick(true)"><img src="../assets/img/nav.png" alt=""></a>
+          <a href="javascript:;" @click="moreInfoClick(true)" ><img src="../assets/img/nav.png" alt=""></a>
           <div class="media_header_info" id="wrapper">
             <ul id="scroller" class="scrollbar">
-              <li v-for="(x,index) in firstNavData" @click="firstClick(x,index)">
+              <li v-for="(x,index) in firstNavData" @click="firstClick(x,index)" @touchstart="firstClick(x,index)">
                 <a href="javascript:;" :class="{'current': activeIndex == index}">{{x.name}}</a>
               </li>
             </ul>

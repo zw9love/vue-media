@@ -3,8 +3,8 @@
     <div class="model">
       <p>{{title}}</p>
       <div>
-        <button class="cancel" @click="cancel()">取消</button>
-        <button class="sure" @click="sure()">确定</button>
+        <button class="cancel" @click="cancel()" @touchstart="cancel()">取消</button>
+        <button class="sure" @click="sure()" @touchstart="sure()">确定</button>
       </div>
     </div>
   </div>

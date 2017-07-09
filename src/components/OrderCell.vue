@@ -1,5 +1,5 @@
 <template>
-  <a href="javascript:;" @click="orderClick()">
+  <a href="javascript:;" @click="orderClick()" @touchstart="orderClick()">
     <div class="main_order_select" :class="{'order':active}">
       <div class="icon_add">
         <span></span>

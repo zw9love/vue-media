@@ -7,10 +7,10 @@
       <div class="order_container">
         <div v-for="x in orderData">
           <div class="main_order">
-            <a href="javascript:;" @click="goOrderShow(x)"><img :src="x.src" alt=""></a>
+            <a href="javascript:;" @click="goOrderShow(x)" @touchstart="goOrderShow(x)"><img :src="x.src" alt=""></a>
             <div class="main_order_info" :style="specialStyle">
-              <p @click="goOrderShow(x)"><a href="javascript:;">{{x.author}}</a></p>
-              <p @click="goOrderShow(x)">简介：{{x.title}}</p>
+              <p @click="goOrderShow(x)" @touchstart="goOrderShow(x)"><a href="javascript:;">{{x.author}}</a></p>
+              <p @click="goOrderShow(x)" @touchstart="goOrderShow(x)">简介：{{x.title}}</p>
             </div>
             <OrderCell :orderActive="x.isOrder"></OrderCell>
           </div>

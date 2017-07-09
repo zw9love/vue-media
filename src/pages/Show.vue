@@ -93,7 +93,7 @@
           </ol>
         </div>
       </div>
-      <div class="cancle" @click="cancel()">
+      <div class="cancle" @click="cancel()" @touchstart="cancel()">
         <a href="javascript:;" id="cancel">取消</a>
       </div>
     </div>
@@ -101,20 +101,20 @@
     <!--默认块-->
     <div class="comment_fixed" v-show="active">
       <ul>
-        <li><a href="javascript:;"><img src="../assets/img/back.png" alt="" class="back" @click="goBack()"></a></li>
-        <li @click="textClick()">
+        <li><a href="javascript:;"><img src="../assets/img/back.png" alt="" class="back" @click="goBack()" ></a></li>
+        <li @click="textClick()" @touchstart="textClick()">
           <div class="comment_txt">
             <span></span>
             <span>发表伟大言论...</span>
           </div>
         </li>
-        <li><a href="javascript:;" @click="shareClick()"><img src="../assets/img/fix_share.png" alt="" id="share"></a>
+        <li><a href="javascript:;" @click="shareClick()" @touchstart="shareClick()"><img src="../assets/img/fix_share.png" alt="" id="share"></a>
         </li>
-        <li v-if="!starActive"><a href="javascript:;" @click="starClick()"><img src="../assets/img/star.png"
+        <li v-if="!starActive"><a href="javascript:;" @click="starClick()" @touchstart="starClick()"><img src="../assets/img/star.png"
                                                                                 alt=""></a></li>
-        <li v-if="starActive"><a href="javascript:;" @click="starClick()"><img src="../assets/img/star_hover.png"
+        <li v-if="starActive"><a href="javascript:;" @click="starClick()" @touchstart="starClick()"><img src="../assets/img/star_hover.png"
                                                                                alt=""></a></li>
-        <li><a href="javascript:;" @click="textClick()"><img src="../assets/img/fix_msg.png" alt=""
+        <li><a href="javascript:;" @click="textClick()" @touchstart="textClick()"><img src="../assets/img/fix_msg.png" alt=""
                                                              style="width: 30px;"><span class="num">666</span></a>
         </li>
       </ul>
@@ -123,10 +123,10 @@
 
     <div class="text" v-show="textActive">
       <div class="btn1">
-        <span><a href="javascript:;" @click="cancelText()">取消</a></span>
+        <span><a href="javascript:;" @click="cancelText()" @touchstart="cancelText()">取消</a></span>
       </div>
       <div class="btn2">
-        <span><a href="javascript:;" @click="sureText()">发表</a></span>
+        <span><a href="javascript:;" @click="sureText()" @touchstart="sureText()">发表</a></span>
       </div>
       <textarea id="txt" :placeholder="placeholder" v-model="myComment" ref="txt"></textarea>
     </div>
