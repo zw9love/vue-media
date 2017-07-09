@@ -1,6 +1,6 @@
 <template>
   <div class="search_contain">
-    <div class="media_search" @click="goLocation()" @touchstart="goLocation()">
+    <div class="media_search" @click="goLocation()">
       <div></div>
       <img src="../assets/img/search.png" alt="">
       <span>&nbsp;{{title}}</span>

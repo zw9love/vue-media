@@ -10,11 +10,11 @@
         <div class="main_comment_contain">
           <span v-if="length <= 5">{{renderData.length}}</span>
           <span v-else>{{data.data.length}}</span>
-          <img src="../assets/img/msg.png" alt="" @click="writeMessage()" @touchstart="writeMessage()">
+          <img src="../assets/img/msg.png" alt="" @click="writeMessage()" >
         </div>
         <div class="main_comment_contain">
           <span>{{data.like_num}}</span>
-          <img src="../assets/img/like.png" alt="" @click="addLike()" @touchstart="addLike()">
+          <img src="../assets/img/like.png" alt="" @click="addLike()" >
         </div>
       </div>
     </div>
@@ -25,12 +25,12 @@
           <div class="line"></div>
           <div class="main_comment_other">
             <p v-for="(x,i) in renderData"><span class="main_comment_name"><a href="javascript:;"
-                                                                              @click="nameClick(x.name1)" @touchstart="nameClick(x.name1)">{{x.name1}} </a></span><span
+                                                                              @click="nameClick(x.name1)" >{{x.name1}} </a></span><span
               v-if="x.name2">回复</span><span class="main_comment_name"><a href="javascript:;"
-                                                                         @click="nameClick(x.name2)" @touchstart="nameClick(x.name2)"> {{x.name2}}:</a></span>{{x.info}}
+                                                                         @click="nameClick(x.name2)" > {{x.name2}}:</a></span>{{x.info}}
             </p>
           </div>
-          <p class="more" v-show="length > 5" @click="more()" @touchstart="more()"><a href="javascript:;">展开更多回复</a></p>
+          <p class="more" v-show="length > 5" @click="more()" ><a href="javascript:;">展开更多回复</a></p>
           <div class="line"></div>
         </div>
       </div>

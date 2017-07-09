@@ -4,7 +4,7 @@
       <img src="../assets/img/back.png" alt="" @click="goBack()">
     </div>
     <span class="page-title">{{title}}</span>
-    <span class="page-edit" v-show="isActive" @click="edit()" @touchstart="edit()">{{str}}</span>
+    <span class="page-edit" v-show="isActive" @click="edit()">{{str}}</span>
   </div>
 </template>
 <script>

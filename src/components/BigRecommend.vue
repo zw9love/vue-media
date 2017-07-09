@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="media_info_big" :class="{ have_movie: data.isMovie}">
-      <p><a href="javascript:;" @click="jump" @touchstart="jump">{{data.title}}</a></p>
-      <a href="javascript:;" class="movie" @click="jump" @touchstart="jump"><img :src="require('../assets/img/b1.jpg')" alt="">
+      <p><a href="javascript:;" @click="jump" >{{data.title}}</a></p>
+      <a href="javascript:;" class="movie" @click="jump" ><img :src="require('../assets/img/b1.jpg')" alt="">
         <div class="media_info_movie">
           <span></span>
         </div>
