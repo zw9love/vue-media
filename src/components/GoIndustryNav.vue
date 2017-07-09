@@ -1,7 +1,7 @@
 <template>
   <header class="media_header" style="padding-left: 0;border-bottom: 1px solid #e8e8e8">
     <div class="media_header_info" id="wrapper" style="margin:0">
-      <ul id="scroller">
+      <ul id="scroller" class="scrollbar">
         <li @click="navClick(index)" v-for="(x,index) in navData">
           <a href="javascript:;" :class="activeIndex == index ? 'current' : ''">{{x.name}}</a>
         </li>
@@ -99,13 +99,13 @@
   }
 
   header.media_header .media_header_info ul {
-    position: relative;
     overflow: hidden;
-    width: 5000px;
+    overflow-x: scroll;
+    white-space:nowrap;
   }
 
   header.media_header .media_header_info ul li {
-    float: left;
+    /*float: left;*/
     margin-right: 1.65rem;
     display: inline-block;
     vertical-align: middle;
