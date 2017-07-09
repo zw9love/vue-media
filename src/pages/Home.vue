@@ -1,6 +1,6 @@
 <template>
   <div style="overflow: hidden;">
-    <!--侧边栏-->
+    <!--侧边栏lol-->
     <div class="aside" :class="{'go_aside':asideActive}" :style="asideStyle">
       <div class="login_head">
         <a href="javascript:;" @click="goLogin" @touchstart="goLogin"><img src="../assets/img/login.png" alt=""></a>
